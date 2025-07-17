@@ -8,7 +8,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "generate:types": "PAYLOAD_CONFIG_PATH=src/payload.config.ts payload generate:types"
+    "db:fresh": "payload migrate:fresh",
+    "generate:types": "PAYLOAD_CONFIG_PATH=src/payload.config.ts payload generate:types",
+    "db:seed": "npm run src/seed.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.1.1",
