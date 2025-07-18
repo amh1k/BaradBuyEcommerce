@@ -1,5 +1,8 @@
+import dotenv from "dotenv";
+dotenv.config();
+
 import { getPayload } from "payload";
-import config from "@/payload.config";
+import config from "../src/payload.config";
 
 const categories = [
   {
@@ -133,7 +136,10 @@ const categories = [
   },
 ];
 const seed = async () => {
-  const payload = await getPayload({ config });
+  const payload = await getPayload({
+    config,
+    //secret: process.env.PAYLOAD_SECRET!,
+  });
   for (const category of categories) {
     const parentCategory = await payload.create({
       collection: "categories",
