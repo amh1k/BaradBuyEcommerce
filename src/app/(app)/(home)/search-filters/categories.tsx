@@ -7,9 +7,13 @@ import { Button } from "../../components/ui/button";
 import { cn } from "../../lib/utils";
 import { ListFilterIcon } from "lucide-react";
 import { CategoriesSideBar } from "./categories-sidebar";
+import {
+  CategoriesGetManyOutput,
+  CategoriesGetManyOutputSingle,
+} from "@/modules/categories/types";
 
 interface Props {
-  data: CustomCategory[];
+  data: CategoriesGetManyOutput;
 }
 export const Categories = ({ data }: Props) => {
   const containerRef = useRef<HTMLDivElement>(null);
