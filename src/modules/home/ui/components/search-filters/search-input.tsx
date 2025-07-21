@@ -1,10 +1,10 @@
 "use client";
 import { BookmarkCheckIcon, ListFilterIcon, SearchIcon } from "lucide-react";
-import { Input } from "../../components/ui/input";
-import { CustomCategory } from "../types";
+import { Input } from "../../../../../app/(app)/components/ui/input";
+import { CustomCategory } from "../../../../../app/(app)/(home)/types";
 import { CategoriesSideBar } from "./categories-sidebar";
 import { useState } from "react";
-import { Button } from "../../components/ui/button";
+import { Button } from "../../../../../app/(app)/components/ui/button";
 import { useTRPC } from "@/trpc/client";
 import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
 import Link from "next/link";

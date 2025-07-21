@@ -1,7 +1,7 @@
 import { inferRouterOutputs } from "@trpc/server";
 
 import { AppRouter } from "@/trpc/routers/_app";
-import { Categories } from "../../app/(app)/(home)/search-filters/categories";
+import { Categories } from "../home/ui/components/search-filters/categories";
 
 export type CategoriesGetManyOutput =
   inferRouterOutputs<AppRouter>["categories"]["getMany"];

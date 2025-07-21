@@ -1,16 +1,16 @@
 "use client";
-import { CustomCategory } from "../types";
+import { CustomCategory } from "../../../../../app/(app)/(home)/types";
 import { useRouter } from "next/navigation";
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
-} from "../../components/ui/sheet";
-import { ScrollArea } from "../../components/ui/scroll-area";
+} from "../../../../../app/(app)/components/ui/sheet";
+import { ScrollArea } from "../../../../../app/(app)/components/ui/scroll-area";
 import { useState } from "react";
 import { ChevronLeftIcon, ChevronRightIcon, Scroll } from "lucide-react";
-import { Button } from "../../components/ui/button";
+import { Button } from "../../../../../app/(app)/components/ui/button";
 interface Props {
   open: boolean;
   onOpenChange: (open: boolean) => void;

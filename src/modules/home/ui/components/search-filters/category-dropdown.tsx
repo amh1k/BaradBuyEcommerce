@@ -1,8 +1,8 @@
 "use client";
 
 import { Category } from "@/payload-types";
-import { Button } from "../../components/ui/button";
-import { cn } from "../../lib/utils";
+import { Button } from "../../../../../app/(app)/components/ui/button";
+import { cn } from "../../../../../app/(app)/lib/utils";
 import { useState, useRef } from "react";
 import { useDropdownPosition } from "./use-dropdown-position";
 import { SubCategoryMenu } from "./subcategory-menu";
