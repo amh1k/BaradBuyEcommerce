@@ -10,7 +10,10 @@ import sharp from "sharp";
 import { Users } from "./collections/Users";
 import { Media } from "./collections/Media";
 import { Categories } from "./collections/Categories";
+import { Products } from "./collections/products";
+import { Tags } from "./collections/Tags";
 const filename = fileURLToPath(import.meta.url);
+
 const dirname = path.dirname(filename);
 
 export default buildConfig({
@@ -20,7 +23,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Categories],
+  collections: [Users, Media, Categories, Products, Tags],
   //cookiePrefix: "barudbuy",
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
