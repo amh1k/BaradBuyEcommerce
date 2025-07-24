@@ -7,7 +7,7 @@ import {
 } from "../ui/components/product-list";
 
 interface Props {
-  category: string;
+  category?: string;
 }
 
 export const ProductListView = ({ category }: Props) => {

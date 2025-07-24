@@ -20,7 +20,7 @@ import { cn } from "@/app/(app)/lib/utils";
 import { useTRPC } from "@/trpc/client";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["700"],
