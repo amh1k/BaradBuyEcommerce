@@ -9,6 +9,24 @@ import { InputOTP } from "@/app/(app)/components/ui/input-otp";
 import { sortValues } from "../hooks/search-params";
 import { DEFAULT_LIMIT } from "@/constants";
 export const productsRouter = createTRPCRouter({
+  getOne: baseProcedure
+    .input(
+      z.object({
+        id: z.string(),
+      })
+    )
+    .query(async ({ ctx, input }) => {
+      const product = await ctx.payload.findByID({
+        collection: "products",
+        id: input.id,
+        depth: 2,
+      });
+      return {
+        ...product,
+        image: product.image as Media | null,
+        tenant: product.tenant as Tenant & { image: Media | null },
+      };
+    }),
   getMany: baseProcedure
     .input(
       z.object({

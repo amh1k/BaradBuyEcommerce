@@ -15,6 +15,7 @@ import { Products } from "./collections/products";
 import { Tags } from "./collections/Tags";
 import { Tenants } from "./collections/Tenants";
 import Image from "next/image";
+import { Config } from "./payload-types";
 //import { multiTenantPlugin } from '@payloadcms/plugin-multi-tenant';
 const filename = fileURLToPath(import.meta.url);
 
@@ -40,7 +41,7 @@ export default buildConfig({
   sharp,
   plugins: [
     payloadCloudPlugin(),
-    multiTenantPlugin({
+    multiTenantPlugin<Config>({
       collections: {
         products: {},
       },
@@ -48,9 +49,10 @@ export default buildConfig({
         includeDefaultField: false,
       },
       userHasAccessToAllTenants: (user) =>
-        user.collection === "users" &&
-        Array.isArray(user.roles) &&
-        user.roles.includes("super-admin"),
+        Boolean(user?.roles?.includes("super-admin")),
+      // user.collection === "users" &&
+      // Array.isArray(user.roles) &&
+      // user.roles.includes("super-admin"),
     }),
     // storage-adapter-placeholder
   ],
