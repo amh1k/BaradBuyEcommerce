@@ -2,6 +2,7 @@
 import { useTRPC } from "@/trpc/client";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import {
   formatCurrency,
   generateTenantURL,
@@ -12,6 +13,18 @@ import { Button } from "@/app/(app)/components/ui/button";
 import { LinkIcon, StarIcon } from "lucide-react";
 import { Fragment } from "react";
 import { Progress } from "@/app/(app)/components/ui/progress";
+//import { CartButton } from "../ui/components/cart-button";
+const CartButton = dynamic(
+  () => import("../ui/components/cart-button").then((mod) => mod.CartButton),
+  {
+    ssr: false,
+    loading: () => (
+      <Button className="flex-1 bg-pink-400" disabled>
+        Add to cart
+      </Button>
+    ),
+  }
+);
 
 interface ProductViewProps {
   productId: string;
@@ -96,9 +109,7 @@ export const ProductView = ({ productId, tenantSlug }: ProductViewProps) => {
             <div className="border-t lg:border-t-0 lg:border-l h-full">
               <div className="flex flex-col gap-4 p-6 border-b">
                 <div className="flex flex-row items-center gap-2">
-                  <Button variant="elevated" className="flex-1 bg-pink-400">
-                    Add to Cart
-                  </Button>
+                  <CartButton productId={productId} tenantSlug={tenantSlug} />
                   <Button
                     className="size-12"
                     variant="elevated"
