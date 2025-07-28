@@ -1,6 +1,6 @@
-import { initTRPC } from "@trpc/server";
+import { initTRPC, TRPCError } from "@trpc/server";
 import { getPayload } from "payload";
-
+import { headers as getHeaders } from "next/headers";
 import { cache } from "react";
 import configPromise from "@payload-config";
 import superjson from "superjson";
@@ -28,4 +28,23 @@ export const baseProcedure = t.procedure.use(async ({ next }) => {
     config: configPromise,
   });
   return next({ ctx: { payload } });
+});
+export const protectedProcedure = baseProcedure.use(async ({ ctx, next }) => {
+  const headers = await getHeaders();
+  const session = await ctx.payload.auth({ headers });
+  if (!session.user) {
+    throw new TRPCError({
+      code: "UNAUTHORIZED",
+      message: "Not authorized",
+    });
+  }
+  return next({
+    ctx: {
+      ...ctx,
+      session: {
+        ...session,
+        user: session.user,
+      },
+    },
+  });
 });

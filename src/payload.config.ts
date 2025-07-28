@@ -16,6 +16,7 @@ import { Tags } from "./collections/Tags";
 import { Tenants } from "./collections/Tenants";
 import Image from "next/image";
 import { Config } from "./payload-types";
+import { Orders } from "./collections/Orders";
 //import { multiTenantPlugin } from '@payloadcms/plugin-multi-tenant';
 const filename = fileURLToPath(import.meta.url);
 
@@ -28,7 +29,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Categories, Products, Tags, Tenants],
+  collections: [Users, Media, Categories, Products, Tags, Tenants, Orders],
   //cookiePrefix: "barudbuy",
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
