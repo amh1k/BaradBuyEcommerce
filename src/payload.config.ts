@@ -18,6 +18,7 @@ import Image from "next/image";
 import { Config } from "./payload-types";
 import { Orders } from "./collections/Orders";
 import { Reviews } from "./collections/Reviews";
+import { isSuperAdmin } from "./app/(app)/lib/access";
 //import { multiTenantPlugin } from '@payloadcms/plugin-multi-tenant';
 const filename = fileURLToPath(import.meta.url);
 
@@ -59,8 +60,7 @@ export default buildConfig({
       tenantsArrayField: {
         includeDefaultField: false,
       },
-      userHasAccessToAllTenants: (user) =>
-        Boolean(user?.roles?.includes("super-admin")),
+      userHasAccessToAllTenants: (user) => isSuperAdmin(user),
       // user.collection === "users" &&
       // Array.isArray(user.roles) &&
       // user.roles.includes("super-admin"),
