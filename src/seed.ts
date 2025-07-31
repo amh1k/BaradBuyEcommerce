@@ -3,6 +3,7 @@ dotenv.config();
 
 import { getPayload } from "payload";
 import config from "../src/payload.config";
+import { stripe } from "./app/(app)/lib/stripe";
 
 const categories = [
   {
@@ -140,12 +141,13 @@ const seed = async () => {
     config,
     //secret: process.env.PAYLOAD_SECRET!,
   });
+  const adminAccount = await stripe.accounts.create({});
   const adminTenant = await payload.create({
     collection: "tenants",
     data: {
       name: "admin",
       slug: "admin",
-      stripeAccountId: "admin",
+      stripeAccountId: adminAccount.id,
     },
   });
   await payload.create({

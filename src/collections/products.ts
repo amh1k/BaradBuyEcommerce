@@ -6,13 +6,13 @@ export const Products: CollectionConfig = {
   slug: "products",
   access: {
     create: ({ req }) => {
-      if (isSuperAdmin(req.user)) return true;
-      const tenant = req.user?.tenants?.[0]?.tenant as Tenant;
-      return Boolean(tenant?.stripeDetailsSubmitted);
+      return true;
     },
+    delete: ({ req }) => isSuperAdmin(req.user),
   },
   admin: {
     useAsTitle: "name",
+    description: "You must verify your account before creating products",
   },
   fields: [
     {
@@ -22,7 +22,7 @@ export const Products: CollectionConfig = {
     },
     {
       name: "description",
-      type: "text",
+      type: "richText",
     },
     {
       name: "price",
@@ -62,10 +62,19 @@ export const Products: CollectionConfig = {
     },
     {
       name: "content",
-      type: "textarea",
+      type: "richText",
       admin: {
         description:
           "Protected Content only visible to customers after purchase.Add product documentation",
+      },
+    },
+    {
+      name: "isArchived",
+      label: "Archive",
+      defaultValue: false,
+      type: "checkbox",
+      admin: {
+        description: "If checked this product will be archived",
       },
     },
   ],

@@ -9,6 +9,7 @@ import configPromise from "@payload-config";
 import { InputOTP } from "@/app/(app)/components/ui/input-otp";
 import { sortValues } from "../hooks/search-params";
 import { DEFAULT_LIMIT } from "@/constants";
+import { TRPCError } from "@trpc/server";
 export const productsRouter = createTRPCRouter({
   getOne: baseProcedure
     .input(
@@ -28,6 +29,12 @@ export const productsRouter = createTRPCRouter({
           content: false,
         },
       });
+      if (product.isArchived) {
+        throw new TRPCError({
+          code: "NOT_FOUND",
+          message: "Product not found",
+        });
+      }
       let isPurchased = false;
       if (session.user) {
         const orderData = await ctx.payload.find({
@@ -112,6 +119,9 @@ export const productsRouter = createTRPCRouter({
     )
     .query(async ({ ctx, input }) => {
       const where: Where = {
+        isArchived: {
+          not_equals: true,
+        },
         //price: {},
       };
       let sort: Sort = "-createdAt";
