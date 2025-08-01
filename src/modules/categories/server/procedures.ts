@@ -1,8 +1,8 @@
 import { baseProcedure, createTRPCRouter } from "@/trpc/init";
 import { Category } from "@/payload-types";
-
+import z from "zod";
 export const categoriesRouter = createTRPCRouter({
-  getMany: baseProcedure.query(async ({ ctx }) => {
+  getMany: baseProcedure.input(z.void()).query(async ({ ctx }) => {
     const data = await ctx.payload.find({
       collection: "categories",
       depth: 1,
