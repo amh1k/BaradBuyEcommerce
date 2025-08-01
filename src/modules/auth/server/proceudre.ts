@@ -1,15 +1,9 @@
 //import "server-only";
 import { baseProcedure, createTRPCRouter } from "@/trpc/init";
-import { getPayload } from "payload";
-import z from "zod";
-import { headers as getHeaders, cookies as getCookies } from "next/headers";
-import { Category } from "@/payload-types";
-import configPromise from "@payload-config";
+import { headers as getHeaders } from "next/headers";
 import { TRPCError } from "@trpc/server";
-import { AUTH_COOKIE } from "../constants";
 import { loginSchema, registerSchema } from "../schema";
 import { generateAuthCookie } from "../utils";
-import { create } from "zustand";
 import { stripe } from "@/app/(app)/lib/stripe";
 export const authRouter = createTRPCRouter({
   session: baseProcedure.query(async ({ ctx }) => {

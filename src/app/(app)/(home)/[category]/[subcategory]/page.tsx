@@ -1,19 +1,15 @@
 import { DEFAULT_LIMIT } from "@/constants";
 import { loadProductFilters } from "@/modules/products/hooks/search-params";
-import {
-  ProductList,
-  ProductListSkeleton,
-} from "@/modules/products/ui/components/product-list";
 import { ProductListView } from "@/modules/products/views/product-list-view";
-import { caller, getQueryClient, trpc } from "@/trpc/server";
+import { getQueryClient, trpc } from "@/trpc/server";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import { SearchParams } from "nuqs/server";
-import { Suspense } from "react";
 
 interface Props {
   params: Promise<{ subcategory: string }>;
   searchParams: Promise<SearchParams>;
 }
+export const dynamic = "force-dynamic";
 
 const Page = async ({ params, searchParams }: Props) => {
   const { subcategory } = await params;

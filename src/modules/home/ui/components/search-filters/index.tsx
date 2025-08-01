@@ -1,9 +1,9 @@
 "use client";
 import { useTRPC } from "@/trpc/client";
-import { CustomCategory } from "../../../../../app/(app)/(home)/types";
+//import { CustomCategory } from "../../../../../app/(app)/(home)/types";
 import { Categories } from "./categories";
 import { SearchInput } from "./search-input";
-import { useSuspenseQueries, useSuspenseQuery } from "@tanstack/react-query";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
 import { DEFAULT_BG_COLOR } from "@/modules/home/constants";
 import { BreadCrumbNavigation } from "./breadcrumbs-navigation";

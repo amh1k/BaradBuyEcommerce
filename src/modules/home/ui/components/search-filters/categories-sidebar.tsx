@@ -9,8 +9,8 @@ import {
 } from "../../../../../app/(app)/components/ui/sheet";
 import { ScrollArea } from "../../../../../app/(app)/components/ui/scroll-area";
 import { useState } from "react";
-import { ChevronLeftIcon, ChevronRightIcon, Scroll } from "lucide-react";
-import { Button } from "../../../../../app/(app)/components/ui/button";
+import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
+//import { Button } from "../../../../../app/(app)/components/ui/button";
 interface Props {
   open: boolean;
   onOpenChange: (open: boolean) => void;

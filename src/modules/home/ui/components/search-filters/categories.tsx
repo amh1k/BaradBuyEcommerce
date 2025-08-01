@@ -1,16 +1,13 @@
 "use client";
-import { Category } from "@/payload-types";
+
 import { CategoryDropdown } from "./category-dropdown";
-import { CustomCategory } from "../../../../../app/(app)/(home)/types";
+
 import { useEffect, useRef, useState } from "react";
 import { Button } from "../../../../../app/(app)/components/ui/button";
 import { cn } from "../../../../../app/(app)/lib/utils";
 import { ListFilterIcon } from "lucide-react";
 import { CategoriesSideBar } from "./categories-sidebar";
-import {
-  CategoriesGetManyOutput,
-  CategoriesGetManyOutputSingle,
-} from "@/modules/categories/types";
+import { CategoriesGetManyOutput } from "@/modules/categories/types";
 import { useParams } from "next/navigation";
 
 interface Props {

@@ -1,16 +1,8 @@
 import z from "zod";
 
-import {
-  baseProcedure,
-  createTRPCRouter,
-  protectedProcedure,
-} from "@/trpc/init";
-import { getPayload } from "payload";
-import { headers as getHeaders } from "next/headers";
-import type { Sort, Where } from "payload";
-import { Category, Media, Tenant } from "@/payload-types";
-import configPromise from "@payload-config";
-import { InputOTP } from "@/app/(app)/components/ui/input-otp";
+import { createTRPCRouter, protectedProcedure } from "@/trpc/init";
+
+import { Media, Tenant } from "@/payload-types";
 
 import { DEFAULT_LIMIT } from "@/constants";
 import { TRPCError } from "@trpc/server";
@@ -70,7 +62,7 @@ export const libraryRouter = createTRPCRouter({
         limit: z.number().default(DEFAULT_LIMIT),
       })
     )
-    .query(async ({ ctx, input }) => {
+    .query(async ({ ctx }) => {
       const ordersData = await ctx.payload.find({
         collection: "orders",
         depth: 0,

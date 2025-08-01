@@ -1,11 +1,9 @@
 import z from "zod";
 
 import { baseProcedure, createTRPCRouter } from "@/trpc/init";
-import { getPayload } from "payload";
-import type { Where } from "payload";
-import { Category, Tenant } from "@/payload-types";
-import configPromise from "@payload-config";
-import { DEFAULT_LIMIT } from "@/constants";
+
+import { Tenant } from "@/payload-types";
+
 import { TRPCError } from "@trpc/server";
 import { Media } from "@/payload-types";
 export const tenantsRouter = createTRPCRouter({

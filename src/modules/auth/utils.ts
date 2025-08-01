@@ -1,5 +1,4 @@
 import { cookies as getCookies } from "next/headers";
-import { AUTH_COOKIE } from "./constants";
 
 interface Props {
   prefix: string;

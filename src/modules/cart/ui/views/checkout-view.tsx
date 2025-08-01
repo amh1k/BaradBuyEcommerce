@@ -5,7 +5,6 @@ import { useCart } from "../../hooks/use-cart";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect } from "react";
 import { toast } from "sonner";
-import Router from "next/navigation";
 import { generateTenantURL } from "@/app/(app)/lib/utils";
 import { CheckOutItem } from "../components/checkout-item";
 import { CheckoutSidebar } from "../components/checkout-sidebar";

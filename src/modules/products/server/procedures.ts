@@ -1,12 +1,11 @@
 import z from "zod";
 
 import { baseProcedure, createTRPCRouter } from "@/trpc/init";
-import { getPayload } from "payload";
+
 import { headers as getHeaders } from "next/headers";
 import type { Sort, Where } from "payload";
 import { Category, Media, Tenant } from "@/payload-types";
-import configPromise from "@payload-config";
-import { InputOTP } from "@/app/(app)/components/ui/input-otp";
+
 import { sortValues } from "../hooks/search-params";
 import { DEFAULT_LIMIT } from "@/constants";
 import { TRPCError } from "@trpc/server";

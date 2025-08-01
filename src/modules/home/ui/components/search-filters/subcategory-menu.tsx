@@ -1,6 +1,6 @@
 import { Category } from "@/payload-types";
 import Link from "next/link";
-import { CustomCategory } from "../../../../../app/(app)/(home)/types";
+
 import { CategoriesGetManyOutput } from "@/modules/categories/types";
 
 interface Props {

@@ -1,15 +1,11 @@
 "use client";
 
-import { Category } from "@/payload-types";
 import { Button } from "../../../../../app/(app)/components/ui/button";
 import { cn } from "../../../../../app/(app)/lib/utils";
 import { useState, useRef } from "react";
-import { useDropdownPosition } from "./use-dropdown-position";
+
 import { SubCategoryMenu } from "./subcategory-menu";
-import {
-  CategoriesGetManyOutput,
-  CategoriesGetManyOutputSingle,
-} from "@/modules/categories/types";
+import { CategoriesGetManyOutputSingle } from "@/modules/categories/types";
 import Link from "next/link";
 
 interface Props {

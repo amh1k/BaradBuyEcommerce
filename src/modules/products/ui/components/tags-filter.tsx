@@ -2,7 +2,7 @@ import { Checkbox } from "@/app/(app)/components/ui/checkbox";
 import { DEFAULT_LIMIT } from "@/constants";
 import { useTRPC } from "@/trpc/client";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { Check, LoaderIcon } from "lucide-react";
+import { LoaderIcon } from "lucide-react";
 interface TagsFilterProps {
   value: string[] | null;
   onChange: (value: string[]) => void;

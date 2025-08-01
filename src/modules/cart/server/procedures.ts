@@ -5,10 +5,9 @@ import {
   createTRPCRouter,
   protectedProcedure,
 } from "@/trpc/init";
-import { getPayload } from "payload";
-import type { Sort, Where } from "payload";
-import { Category, Media, Tenant } from "@/payload-types";
-import { DEFAULT_LIMIT, PLATFORM_FEE_PERCENTAGE } from "@/constants";
+
+import { Media, Tenant } from "@/payload-types";
+import { PLATFORM_FEE_PERCENTAGE } from "@/constants";
 import { TRPCError } from "@trpc/server";
 import type Stripe from "stripe";
 import { CheckoutMetaData, ProductMetaData } from "../types/types";

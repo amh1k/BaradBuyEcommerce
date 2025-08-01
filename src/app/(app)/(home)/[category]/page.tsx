@@ -1,5 +1,5 @@
 import type { SearchParams } from "nuqs/server";
-import { caller, getQueryClient, trpc } from "@/trpc/server";
+import { getQueryClient, trpc } from "@/trpc/server";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 
 import { loadProductFilters } from "@/modules/products/hooks/search-params";
@@ -11,6 +11,7 @@ interface Props {
   params: Promise<{ category: string }>;
   searchParams: Promise<SearchParams>;
 }
+export const dynamic = "force-dynamic";
 
 const Page = async ({ params, searchParams }: Props) => {
   const { category } = await params;

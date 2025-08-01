@@ -2,12 +2,9 @@
 import { generateTenantURL } from "@/app/(app)/lib/utils";
 //import { CheckoutButton } from "@/modules/cart/ui/components/checkout-button";
 
-import { useSuspenseQuery } from "@tanstack/react-query";
-import Image from "next/image";
-import dynamic from "next/dynamic";
 import Link from "next/link";
 import { Button } from "@/app/(app)/components/ui/button";
-import { ShoppingCartIcon } from "lucide-react";
+
 interface Props {
   slug: string;
 }

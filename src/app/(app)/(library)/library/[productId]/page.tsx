@@ -1,5 +1,3 @@
-import { DEFAULT_LIMIT } from "@/constants";
-import { LibraryView } from "@/modules/library/ui/views/library-view";
 import {
   ProductView,
   ProductViewSkeleton,
@@ -11,6 +9,7 @@ import { Suspense } from "react";
 interface Props {
   params: Promise<{ productId: string }>;
 }
+export const dynamic = "force-dynamic";
 
 const Page = async ({ params }: Props) => {
   const { productId } = await params;

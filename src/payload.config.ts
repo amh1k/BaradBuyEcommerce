@@ -14,7 +14,7 @@ import { Categories } from "./collections/Categories";
 import { Products } from "./collections/products";
 import { Tags } from "./collections/Tags";
 import { Tenants } from "./collections/Tenants";
-import Image from "next/image";
+
 import { Config } from "./payload-types";
 import { Orders } from "./collections/Orders";
 import { Reviews } from "./collections/Reviews";

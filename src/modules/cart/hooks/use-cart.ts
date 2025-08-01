@@ -1,4 +1,3 @@
-import { clear } from "console";
 import { useCartStore } from "../store/use-cart-store";
 import { useCallback } from "react";
 import { useShallow } from "zustand/react/shallow";

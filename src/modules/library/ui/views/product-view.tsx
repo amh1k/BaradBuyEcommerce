@@ -5,7 +5,7 @@ import { RichText } from "@payloadcms/richtext-lexical/react";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { useTRPC } from "@/trpc/client";
 import { Suspense } from "react";
-import { ProductList, ProductListSkeleton } from "../components/product-list";
+//import { ProductList, ProductListSkeleton } from "../components/product-list";
 import { ReviewsSidebar } from "../components/review-sidebar";
 import { ReviewFormSkeleton } from "../components/review-form";
 interface Props {

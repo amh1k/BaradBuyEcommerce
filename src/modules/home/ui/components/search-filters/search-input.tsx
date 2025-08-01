@@ -1,7 +1,6 @@
 "use client";
 import { BookmarkCheckIcon, ListFilterIcon, SearchIcon } from "lucide-react";
 import { Input } from "../../../../../app/(app)/components/ui/input";
-import { CustomCategory } from "../../../../../app/(app)/(home)/types";
 import { CategoriesSideBar } from "./categories-sidebar";
 import { useState } from "react";
 import { Button } from "../../../../../app/(app)/components/ui/button";

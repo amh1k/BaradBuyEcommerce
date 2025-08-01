@@ -1,6 +1,6 @@
-import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
+import { HydrationBoundary } from "@tanstack/react-query";
 import { Footer } from "../../../modules/home/ui/components/footer";
-import { Category } from "@/payload-types";
+
 import { Navbar } from "../../../modules/home/ui/components/navbar";
 import {
   SearchFilters,

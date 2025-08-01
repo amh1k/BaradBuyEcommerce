@@ -1,5 +1,4 @@
 import Stripe from "stripe";
-import { metadata } from "../../../app/(app)/layout";
 
 export type ProductMetaData = {
   stripeAccountId: string;
