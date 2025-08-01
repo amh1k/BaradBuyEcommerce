@@ -7,6 +7,8 @@ export const Products: CollectionConfig = {
   access: {
     create: ({ req }) => {
       return true;
+      // const tenant = req.user?.tenants?.[0]?.tenant as Tenant;
+      // return Boolean(tenant?.stripeDetailsSubmitted);
     },
     delete: ({ req }) => isSuperAdmin(req.user),
   },

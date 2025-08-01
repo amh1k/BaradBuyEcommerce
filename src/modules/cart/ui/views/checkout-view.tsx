@@ -58,8 +58,9 @@ export const CheckoutView = ({ tenantSlug }: CheckoutViewProps) => {
     if (states.success) {
       setStates({ success: false, cancel: false });
       clearCart();
+      console.log("Hi there");
       queryClient.invalidateQueries(trpc.library.getMany.infiniteQueryFilter());
-      router.push("/library");
+      window.location.assign("/library");
     }
   }, [
     states.success,

@@ -13,6 +13,7 @@ import { TRPCError } from "@trpc/server";
 import type Stripe from "stripe";
 import { CheckoutMetaData, ProductMetaData } from "../types/types";
 import { stripe } from "@/app/(app)/lib/stripe";
+import { generateTenantURL } from "@/app/(app)/lib/utils";
 
 export const checkoutRouter = createTRPCRouter({
   verify: protectedProcedure.mutation(async ({ ctx }) => {
@@ -142,11 +143,13 @@ export const checkoutRouter = createTRPCRouter({
       const platformFeeAmount = stAccountId
         ? Math.round(totalAmount * (PLATFORM_FEE_PERCENTAGE / 100))
         : undefined;
+      const domain = generateTenantURL(input.tenantSlug);
+
       const checkout = await stripe.checkout.sessions.create(
         {
           customer_email: ctx.session.user.email,
-          success_url: `${process.env.NEXT_PUBLIC_APP_URL}/tenants/${input.tenantSlug}/checkout?success=true`,
-          cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}/tenants/${input.tenantSlug}/checkout?cancel=true`,
+          success_url: `${domain}/checkout?success=true`,
+          cancel_url: `${domain}/tenants/${input.tenantSlug}/checkout?cancel=true`,
           mode: "payment",
           line_items: lineItems,
           invoice_creation: {
@@ -155,14 +158,17 @@ export const checkoutRouter = createTRPCRouter({
           metadata: {
             userId: ctx.session.user.id,
           } as CheckoutMetaData,
-          payment_intent_data: {
-            application_fee_amount: platformFeeAmount,
-          },
+          ...(platformFeeAmount && stAccountId
+            ? {
+                payment_intent_data: {
+                  application_fee_amount: platformFeeAmount,
+                },
+              }
+            : {}),
         },
-        {
-          stripeAccount: tenant.stripeAccountId,
-        }
+        stAccountId ? { stripeAccount: stAccountId } : undefined
       );
+
       if (!checkout.url) {
         throw new TRPCError({
           code: "INTERNAL_SERVER_ERROR",
