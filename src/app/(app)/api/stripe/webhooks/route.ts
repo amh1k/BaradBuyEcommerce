@@ -1,16 +1,29 @@
 import type Stripe from "stripe";
 import { getPayload } from "payload";
-import config from "@payload-config";
+import payloadconfig from "@payload-config";
 import { NextResponse } from "next/server";
 import { stripe } from "@/app/(app)/lib/stripe";
 import { ExpandedLineItem } from "@/modules/cart/types/types";
+export const runtime = "nodejs";
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
 
 export async function POST(req: Request) {
+  // Get raw request body as a Buffer
+  const rawBody = await req.arrayBuffer();
+  const bodyBuffer = Buffer.from(rawBody);
+
+  // Get Stripe signature from headers
+  const sig = req.headers.get("stripe-signature") as string;
   let event: Stripe.Event;
   try {
     event = stripe.webhooks.constructEvent(
-      await (await req.blob()).text(),
-      req.headers.get("stripe-signature") as string,
+      bodyBuffer,
+      sig,
+
       process.env.STRIPE_WEBHOOK_SECRET!
     );
   } catch (error) {
@@ -34,7 +47,7 @@ export async function POST(req: Request) {
     "checkout.session.completed",
     "account.updated",
   ];
-  const payload = getPayload({ config });
+  const payload = getPayload({ config: payloadconfig });
   if (permittedEvents.includes(event.type)) {
     let data;
     try {
